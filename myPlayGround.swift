@@ -379,3 +379,462 @@ print(numbers)
     //REVERSED // NEW
 
 print(String(stringName.reversed()))
+
+var stringName = ""
+var Ae: Character = "A"
+var Be: Character = "B"
+
+stringName.append(Ae)
+stringName.append(Be)
+print(stringName)
+    
+    //Arrays
+
+var someInts = [1, 4, 5, 6]
+print(someInts)
+
+var someStrings = ["Fruites", "Veges", "Meat"]
+print(someStrings)
+
+//Accessing values from array
+
+for s in someStrings{
+    print("I eart \(s)")
+}
+
+//Check odd or even numbers
+
+for i in someInts{
+    if i % 2 == 0{
+        print("It's even \(i)")
+    }else{
+        print("It's odd \(i)")
+    }
+}
+
+//First and last element of array
+
+if let firstElement = someInts.first, let lastElement = someInts.last{
+    print(firstElement, lastElement, separator: ",")
+}
+
+//Accessing elements by number
+
+print(someInts[0])
+
+//indexes of array  // indices  ** News **
+print(someInts.count)
+for i in someInts.indices{
+    print(i)
+}
+
+
+// Adding and removing element from array
+
+print(someInts)
+someInts.append(7)  //adding last element
+print(someInts)
+someInts.remove(at: 2)
+someInts.removeLast() //removing last element
+print(someInts)
+
+//adding multiple values
+someInts.append(contentsOf: [8, 9] )
+print(someInts)
+
+//Edit the value
+someInts[1] = 3
+print(someInts)
+
+//Modifying copies of array. copy array
+
+var numbers = [1, 2, 4, 5]
+var numberCopy = numbers
+print(numberCopy)
+
+    //Bridging between Array and NSarray
+//TODO()
+
+//create empty array
+//init()
+var emptyArray = Array<Int>()
+print(emptyArray.isEmpty)
+
+//capacity
+print(numbers.capacity)
+
+//description
+print(numbers.debugDescription  )
+
+//Count or size of
+print(numbers.count )
+//Note : CollectionOfOne used to represent sigle element as a collection
+
+//repeating element
+var arrayOfOne = Array(repeating: 1, count: 9)
+print(arrayOfOne)
+
+//Accesing Elements ..subscript
+
+var cities = ["Ahmedabad", "Vadodara", "Mumbai", "Pune"]
+print(cities[1 ..< cities.endIndex])
+
+var citiesSlices = cities[2...]
+print(citiesSlices)
+
+//firstIndexOf
+var mumbaiIndex = cities.firstIndex(of: "Mumbai")
+print(cities[mumbaiIndex!])
+
+//Get RANDOM element from array  ** NEW **
+var dice = [1, 2, 3, 4, 5, 6]
+print(dice.randomElement()!)
+
+//Null Safety   ** Imp ***
+var int: Int?
+
+// Guard for check  // New
+func check(_ st: String){
+    guard st == "ok" else
+    {
+        
+        print("in guard")
+        return
+    }
+    print("after guard")
+}
+
+check("okk")
+
+////Type Casting                  ** IMP **
+//var dd: Double = Double(int)
+//var ss: String = String(int)
+//var nn = Int(ss)
+//rint(nn!)
+
+//print(int!!)
+
+//var randomNumber = dice.randomElement(using: &myGenerator)!
+
+var randomNumbers = [0...100]
+print(randomNumbers.shuffle())
+
+        //Sets
+
+var someSets = Set<Character>()
+print(someSets.isEmpty)
+someSets.insert("A")
+print(someSets)
+print(someSets)
+print(someSets.contains("A"))
+someSets.remove("A")
+someSets.insert("C")
+someSets.insert("B")
+someSets.sorted()
+print(someSets)
+    
+//Sets Operation    //Union //Intersaction //Substraction
+
+let evens: Set = [2,4,6,8]
+let odds: Set = [1, 3, 5, 7]
+let prime = [2, 3, 5, 7]
+//var newOne = odds.union(evens).sorted()
+//print(newOne)
+
+var newOne = odds.intersection(prime).sorted() //[3, 5, 7]
+odds.union(prime) // [1, 2, 3, 5, 7 ]
+evens.subtracting(prime) //[1]
+print(newOne)
+
+let ingredients: Set = ["CoCo beans", "Cocoa butter", "salt"]
+if ingredients.contains("salt"){
+    print("It's salty")
+}
+    
+    //Dictionaries
+
+var responseMessage = [
+        401: "Access Forbidden",
+        200: "OK",
+        400: "File not found"
+]
+var emptyDict : [String: String] = [:] //Empty dictionary
+print(responseMessage.capacity)
+print(responseMessage[200]!)
+
+//edit
+responseMessage[200] = "Welcome"
+print(responseMessage)
+
+var interestingNumbers: Dictionary = [
+    "Primes": [2, 3, 5, 7],
+    "Odds" : [1, 3, 5, 7],
+    "even" : [2, 4, 6, 8]
+]
+
+var city = [
+    "Ahmedabad",
+    "Mumbai",
+    "Vadodara"
+]
+
+//Sequence based initializing
+var Distance = [20, 80, 360]
+var cityDistandDic = Dictionary(uniqueKeysWithValues: zip(city,Distance))  //Zip(firstArray, SecondArray) = Dictionary
+print(cityDistandDic)
+
+//Filtering
+
+var closeCities = cityDistandDic.filter{ $0.value < 100}
+print(closeCities)
+
+    
+/// Dictionary Grouping
+
+cities = ["Delhi","Dehradun","Hydrabad","Bihar","Bombay"]
+var GroupedCities = Dictionary(grouping: cities){ $0.first! }
+print(GroupedCities)
+
+/// Accesing Dictionary
+
+print("Value at number 1 is \(cities[1])")
+
+///Modifying Dictionary
+
+var Dict = [0: "Bihar", 1:"Gujarat", 2:"UP"]
+
+if let oldValue = Dict.updateValue("Bombay", forKey: 0 ) {
+    print("The old value of \(oldValue) was replaced with a new one.")
+}
+Dict.updateValue("Bombay", forKey: 0)
+print(Dict)
+
+///Remove key-value
+//1
+var removeValue = Dict.removeValue(forKey: 0)
+//2
+Dict[0] = nil
+print(Dict)
+
+///Iterating over Dictionary                            enumerated()
+
+for (index, keyValue) in Dict.enumerated(){
+    print("key and value respectively are \(index) : \(keyValue)")
+}
+
+///Convert To Arrays
+
+print(Dict)
+var dictKey = Dict.keys
+var dictValues = Dict.values
+
+print(dictKey) //only keys
+print(dictValues) //only values
+
+
+///Count
+
+print("size of Dict is \(Dict.count)")
+
+////Empty
+
+print("Checks if it's empty or not \(Dict.isEmpty)")
+
+    ///Function
+
+func functionName(_ a: Int) -> Int{
+    
+    return a + 3
+}
+
+print(functionName(3))
+
+///Function with option return value        //* New
+
+func giveIfyouHave(array: [Int]) -> (a: Int?, b: Int?){
+    
+    let newArray = array.sorted()
+    let max = newArray.last
+    let min = newArray.first
+    return (min, max)
+}
+
+print(giveIfyouHave(array: [3,4,5,5,5]))
+
+///External parameter name
+
+func pow1(firstArgs a: Int,SecondArgs b: Int) -> Int{
+    var res = a
+    for _ in 1 ..< b{
+        res *= a
+    }
+    return res
+}
+
+print(pow1(firstArgs: 2,SecondArgs:  3))
+
+
+///Variadic Parameters             //** NEW
+
+func functioname<N> (parameterName: N...){
+    //Body
+}
+
+func vari<N> (members: N...){
+    for i in members{
+        print(i)
+    }
+}
+
+vari(members: "A","B","C")
+
+
+///Constant, Variable and I/o Parameter
+
+func swapValues(_ a: inout Int, _ b: inout Int){    //inout
+    let temp = a
+    a = b
+    b = temp
+}
+
+var n1 = 10
+var n2 = 20
+
+swapValues(&n1, &n2)        //Note: use & before parameter passing
+
+print("After swapig items \(n1) and \(n2)")
+
+///Using Function types                     NOTE:  ** NEW **
+
+func sum(a: Int, b: Int) -> Int{
+    return a + b
+}
+
+var addition: (Int,Int) -> Int = sum
+print(addition(2,3))
+
+///Nested Function
+
+func operate ( with symbol: String) -> (Int, Int) ->Int{    //👀
+    
+    func add(num1: Int, num2: Int) -> Int{
+        return num1 + num2
+    }
+    
+    func subtract(num1: Int, num2: Int) -> Int{
+        return num1 - num2
+    }
+    
+    let operation = (symbol == "+") ? add : subtract
+    
+    return operation
+    
+}
+
+let operation = operate(with: "+")
+let result = operation(2,3)
+print(result)
+
+
+    ///Function Rescursion  Calling self
+//Ex1
+func countToZero(_ a: Int){
+    print(a)
+    if a > 0 {
+        countToZero(a - 1)
+    }
+}
+
+countToZero(3)
+
+//Ex2
+func findFactorial(of n: Int) -> Int{
+    if n == 1{
+        return 1
+    }else{
+        return n * findFactorial(of: n - 1)
+    }
+    
+}
+
+print(findFactorial(of: 4))
+
+    ///Closure
+
+//SYNTAX
+
+//{
+//    (parameter) -> return type in Statement
+//}
+
+var studName = {print("Welcome to Closure")}
+studName()
+
+print(result)
+
+//addition using closure
+var add : (Int, Int) -> Int = {
+    (val1, val2) in
+    return val1 + val2
+    }
+
+
+print(add(1,2))
+
+        ///Enumeration
+
+enum climate{
+    case India
+    case America
+    case Africa
+}
+
+var season = climate.India
+//season = .India
+
+switch season {
+case .India:
+    print("Welcome to india")
+default:
+    print("Hmm..")
+}
+
+///Difference between Associated and raw value
+
+
+enum Student{
+    case Name(String)                  //👀 case
+    case Marks(Int, Int, Int)
+}
+
+var studentDetail = Student.Name("Swift")
+var studentMarks = Student.Marks(20,30,40)
+
+switch studentMarks {
+    case .Name(let studentName):
+        print("Student name is \(studentName)")
+    case .Marks (let m1, let m2, let m3):
+        print("Student get \(m1), \(m2), \(m3)")    //👀 put : after case
+}
+
+enum Month : Int {
+    case January = 1, February , March, April       //👀 if first case = 1 then sequencialy other cases get values
+}
+
+var yearMonth = Month.April.rawValue
+
+print(yearMonth)
+
+
+        ///Structures
+
+struct StudentMarks{
+    var mark1 = 100
+    var mark2 = 90
+    var mark3 = 40
+}
+
+let marks = StudentMarks()  //👀 don't forget invocation
+
+
+
