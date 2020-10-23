@@ -827,7 +827,7 @@ print(yearMonth)
 
 
         ///Structures
-
+//Ex1
 struct StudentMarks{
     var mark1 = 100
     var mark2 = 90
@@ -837,4 +837,15 @@ struct StudentMarks{
 let marks = StudentMarks()  //👀 don't forget invocation
 
 
+//Ex2
+struct MarksStruct{
+    var mark: Int
+    init(mark: Int) {
+        self.mark = mark
+    }
+    
+}
 
+var marksA = MarksStruct(mark: 98)
+var marksB = marksA
+marksB.mark = 97
